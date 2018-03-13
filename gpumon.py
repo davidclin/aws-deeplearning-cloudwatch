@@ -91,8 +91,7 @@ def getUtilization(handle):
 def logResults(i, util, gpu_util, mem_util, powDrawStr, temp):
     try:
         gpu_logs = open(TMP_FILE_SAVED, 'a+')
-        writeString = str(i) + ',' + gpu_util + ',' + mem_util + ',' + powDrawSt
-r + ',' + temp + '\n'
+        writeString = str(i) + ',' + gpu_util + ',' + mem_util + ',' + powDrawStr + ',' + temp + '\n'
         gpu_logs.write(writeString)
     except:
         print("Error writing to file ", gpu_logs)
