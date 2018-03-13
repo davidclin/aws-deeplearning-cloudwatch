@@ -158,7 +158,7 @@ def main():
         while True:
             PUSH_TO_CW = True
             # Find the metrics for each GPU on instance
-            print "Finding metrics for each GPU on instance ..."
+            print "Pushing metrics to CloudWatch for each GPU on instance ..."
             for i in range(deviceCount):
                 handle = nvmlDeviceGetHandleByIndex(i)
 
