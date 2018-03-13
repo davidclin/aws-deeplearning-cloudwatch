@@ -11,6 +11,7 @@
 #  express or implied. See the License for the specific language governing
 #  permissions and limitations under the License.
 
+
 import urllib2
 import boto3
 import os
@@ -90,7 +91,8 @@ def getUtilization(handle):
 def logResults(i, util, gpu_util, mem_util, powDrawStr, temp):
     try:
         gpu_logs = open(TMP_FILE_SAVED, 'a+')
-        writeString = str(i) + ',' + gpu_util + ',' + mem_util + ',' + powDrawStr + ',' + temp + '\n'
+        writeString = str(i) + ',' + gpu_util + ',' + mem_util + ',' + powDrawSt
+r + ',' + temp + '\n'
         gpu_logs.write(writeString)
     except:
         print("Error writing to file ", gpu_logs)
@@ -146,7 +148,7 @@ def logResults(i, util, gpu_util, mem_util, powDrawStr, temp):
                     'Value': int(temp)
                 },
         ],
-            Namespace=my_NameSpace
+            Namespace=str(my_NameSpace) + " (" + str(INSTANCE_ID) + ")"
         )
 
 
@@ -158,7 +160,7 @@ def main():
         while True:
             PUSH_TO_CW = True
             # Find the metrics for each GPU on instance
-            print "Pushing metrics to CloudWatch for each GPU on instance ..."
+            print "Finding metrics for each GPU on instance ..."
             for i in range(deviceCount):
                 handle = nvmlDeviceGetHandleByIndex(i)
 
